@@ -10,35 +10,81 @@
 	</parent>
 	<groupId>com.jxy</groupId>
 	<artifactId>warp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>warp</name>
+	<version>${warp.version}</version>
+    <packaging>pom</packaging>
+    <name>warp</name>
 	<description>warp exchange system</description>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+
+    <modules>
+		<module>common</module>
+		<module>trade-engine</module>
+	</modules>
+
 	<properties>
+		<warp.version>1.0.0-SNAPSHOT</warp.version>
 		<java.version>21</java.version>
+		<springcloud.version>2022.0.0</springcloud.version>
+		<mybatis.spring.version>2.3.1</mybatis.spring.version>
+		<mysql.connector.version>8.0.28</mysql.connector.version>
+		<lombok.version>1.18.36</lombok.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${springcloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Spring Boot Starter MyBatis (如果使用Spring Boot) -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.spring.version}</version> <!-- 使用最新版本 -->
+			</dependency>
+
+			<!-- 数据库驱动，例如MySQL -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<!-- 排除默认的logback -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+
+		<!-- 添加log4j2依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 	</dependencies>
 
