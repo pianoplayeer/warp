@@ -12,7 +12,8 @@ CREATE TABLE assets (
   kind CHAR(3) NOT NULL,
   available DECIMAL(36, 18) NOT NULL,
   frozen DECIMAL(36, 18) NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  INDEX asset_index (userId, kind)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci AUTO_INCREMENT = 1000;
 
 CREATE TABLE api_key_auths (

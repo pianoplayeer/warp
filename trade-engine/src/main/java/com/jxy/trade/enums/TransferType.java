@@ -1,17 +1,16 @@
 package com.jxy.trade.enums;
 
-import com.jxy.trade.consts.TransferConst;
-
+import com.jxy.trade.consts.AssetStatus;
 import lombok.Getter;
 
 @Getter
 public enum TransferType {
 
-    AVAILABLE_TO_AVAILABLE(TransferConst.AVAILABLE, TransferConst.AVAILABLE),
+    AVAILABLE_TO_AVAILABLE(AssetStatus.AVAILABLE, AssetStatus.AVAILABLE),
 
-    AVAILABLE_TO_FROZEN(TransferConst.AVAILABLE, TransferConst.FROZEN),
+    AVAILABLE_TO_FROZEN(AssetStatus.AVAILABLE, AssetStatus.FROZEN),
 
-    FROZEN_TO_AVAILABLE(TransferConst.FROZEN, TransferConst.AVAILABLE);
+    FROZEN_TO_AVAILABLE(AssetStatus.FROZEN, AssetStatus.AVAILABLE);
 
     private final String from;
 
