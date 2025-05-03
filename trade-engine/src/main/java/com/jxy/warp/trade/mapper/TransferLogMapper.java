@@ -1,13 +1,9 @@
-package com.jxy.trade.mapper;
+package com.jxy.warp.trade.mapper;
 
 import java.math.BigDecimal;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-
-import com.jxy.trade.consts.AssetKind;
-import com.jxy.trade.consts.TransferStatus;
-import com.jxy.trade.enums.TransferType;
 
 @Mapper
 public interface TransferLogMapper {

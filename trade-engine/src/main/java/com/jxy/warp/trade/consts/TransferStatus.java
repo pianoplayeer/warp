@@ -1,4 +1,4 @@
-package com.jxy.trade.consts;
+package com.jxy.warp.trade.consts;
 
 public interface TransferStatus {
 

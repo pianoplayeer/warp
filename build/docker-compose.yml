@@ -13,28 +13,52 @@ services:
     volumes:
       - "./docker/nacos-data:/nacos"
 
-  kafka:
-    image: bitnami/kafka:3.3
-    container_name: kafka
+  namesrv:
+    image: apache/rocketmq:5.1.0
+    container_name: rocketmq-namesrv
     ports:
-      - "9092:9092"
+      - "9876:9876"
     environment:
-      - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
-      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      # KRaft模式配置
-      - KAFKA_KRAFT_CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk  # 随机生成的UUID
-      - KAFKA_CFG_PROCESS_ROLES=broker,controller
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
-      - KAFKA_CFG_NODE_ID=1
-
+      - JAVA_OPT_EXT=-server -Xms512m -Xmx512m -Xmn256m
+    command: sh mqnamesrv
     volumes:
-      - "./docker/kafka-data:/bitnami"
+      - ./docker/rocketmq/namesrv/logs:/home/rocketmq/logs
+      - ./docker/rocketmq/namesrv/store:/home/rocketmq/store
+
+  broker:
+    image: apache/rocketmq:5.1.0
+    container_name: rocketmq-broker
+    ports:
+      - "10909:10909"  # Broker 端口
+      - "10911:10911"  # Broker HA端口
+      - "10912:10912"  # 快速失败监听端口
+    environment:
+      - JAVA_OPT_EXT=-server -Xms1g -Xmx1g -Xmn512m
+      - NAMESRV_ADDR=rocketmq-namesrv:9876
+      - BROKER_CLUSTER_NAME=DefaultCluster
+      - BROKER_NAME=broker-a
+      - BROKER_ID=0
+      - BROKER_ROLE=ASYNC_MASTER
+      - BROKER_IP1=broker  # 重要：生产环境需替换为真实IP
+    depends_on:
+      - namesrv
+    command: sh mqbroker -c /home/rocketmq/conf/broker.conf
+    volumes:
+      - ./docker/rocketmq/broker/logs:/home/rocketmq/logs
+      - ./docker/rocketmq/broker/store:/home/rocketmq/store
+      - ./docker/rocketmq/broker/conf/broker.conf:/home/rocketmq/conf/broker.conf
+
+  dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rocketmq-dashboard
+    ports:
+      - "8080:8080"
+    environment:
+      - NAMESRV_ADDR=rocketmq-namesrv:9876
+      - JAVA_OPTS=-Xmx128m -Xms128m
+    depends_on:
+      - namesrv
+      - broker
 
   redis:
     image: redis:6.2

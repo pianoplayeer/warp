@@ -1,4 +1,4 @@
-package com.jxy.trade.entity;
+package com.jxy.warp.trade.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

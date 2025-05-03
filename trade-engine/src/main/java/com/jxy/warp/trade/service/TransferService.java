@@ -1,25 +1,19 @@
-package com.jxy.trade.service;
+package com.jxy.warp.trade.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
 
-import com.jxy.trade.consts.AssetStatus;
-import com.jxy.trade.consts.TransferStatus;
+import com.jxy.warp.trade.consts.AssetStatus;
+import com.jxy.warp.trade.consts.TransferStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jxy.trade.consts.AssetKind;
-import com.jxy.trade.enums.TransferType;
-import com.jxy.trade.mapper.AssetMapper;
-import com.jxy.trade.mapper.TransferLogMapper;
+import com.jxy.warp.trade.enums.TransferType;
+import com.jxy.warp.trade.mapper.AssetMapper;
+import com.jxy.warp.trade.mapper.TransferLogMapper;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
-
-import javax.xml.crypto.dsig.keyinfo.KeyName;
 
 @Service
 public class TransferService {

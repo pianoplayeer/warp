@@ -1,4 +1,4 @@
-package com.jxy.trade.consts;
+package com.jxy.warp.trade.consts;
 
 /**
  * @date 2025/4/30
