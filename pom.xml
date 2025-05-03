@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
+		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jxy</groupId>
@@ -24,11 +24,11 @@
 	<properties>
 		<warp.version>1.0.0-SNAPSHOT</warp.version>
 		<java.version>21</java.version>
-		<springcloud.version>2022.0.0</springcloud.version>
-		<mybatis.spring.version>2.3.1</mybatis.spring.version>
+		<springcloud.version>2023.0.1</springcloud.version>
+		<mybatis.spring.version>3.0.3</mybatis.spring.version>
 		<mysql.connector.version>8.0.28</mysql.connector.version>
 		<lombok.version>1.18.36</lombok.version>
-		<alibaba-cloud.version>2021.1</alibaba-cloud.version>
+		<alibaba-cloud.version>2023.0.1.0</alibaba-cloud.version>
 	</properties>
 
 	<dependencyManagement>

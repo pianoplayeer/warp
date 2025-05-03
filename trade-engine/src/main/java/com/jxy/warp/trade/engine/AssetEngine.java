@@ -34,4 +34,13 @@ public class AssetEngine {
 			log.error("transfer fail", e);
 		}
 	}
+	
+	public void saveAsset(Long userId, String kind, BigDecimal amount) {
+		try {
+			transferService.saveAsset(userId, kind, amount);
+			log.info("{} save asset {}: {}", userId, kind, amount);
+		} catch (Exception e) {
+			log.error("{} fail to save asset", userId, e);
+		}
+	}
 }

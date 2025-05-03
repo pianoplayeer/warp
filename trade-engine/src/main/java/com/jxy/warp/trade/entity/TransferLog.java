@@ -3,12 +3,13 @@ package com.jxy.warp.trade.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 public class TransferLog {
 
-    private String transferId;
+    private Long transferId;
 
     private BigDecimal amount;
 

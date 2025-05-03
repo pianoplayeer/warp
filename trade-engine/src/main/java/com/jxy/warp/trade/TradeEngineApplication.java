@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
-@MapperScan("com.jxy.trade.mapper")
+@SpringBootApplication(scanBasePackages = {"com.jxy.warp"})
+@MapperScan("com.jxy.warp.trade.mapper")
 @EnableDiscoveryClient
 public class TradeEngineApplication {
 
