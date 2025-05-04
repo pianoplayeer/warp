@@ -29,7 +29,7 @@
 
     <Loggers>
         <!-- 应用日志 -->
-        <Logger name="com.yourcompany" level="debug" additivity="false">
+        <Logger name="com.jxy.warp" level="debug" additivity="false">
             <AppenderRef ref="appLog"/>
             <AppenderRef ref="Console"/>
         </Logger>

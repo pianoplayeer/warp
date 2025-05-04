@@ -26,39 +26,6 @@ public class TransferService {
     @Autowired
     private TransferLogMapper transferLogMapper;
     
-    @Autowired
-    private NacosPropertyConfig nacosPropertyConfig;
-
-    @Transactional(rollbackFor = Throwable.class)
-    public void saveAsset(Long userId, String kind, BigDecimal amount) {
-        Long systemId = nacosPropertyConfig.getSystemId();
-        
-        TransferLog transferLog = new TransferLog();
-        transferLog.setFromUserId(systemId);
-        transferLog.setToUserId(userId);
-        transferLog.setAssetKind(kind);
-        transferLog.setAmount(amount);
-        transferLog.setType(TransferType.AVAILABLE_TO_AVAILABLE.name());
-        transferLog.setStatus(TransferStatus.SUCCESS);
-    
-        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
-            @Override
-            public void afterCompletion(int status) {
-                if (status != STATUS_COMMITTED) {
-                    transferLog.setStatus(TransferStatus.FAIL);
-                    transferLogMapper.insertLog(transferLog);
-                }
-            }
-        });
-        
-        BigDecimal systemAvailable = assetMapper.getAssetAvailableAmountForUpdate(systemId, kind);
-        BigDecimal userAvailable = assetMapper.getAssetAvailableAmountForUpdate(userId, kind);
-        
-        assetMapper.updateAssetAvailableByAmount(systemId, kind, systemAvailable.subtract(amount));
-        assetMapper.updateAssetAvailableByAmount(userId, kind, userAvailable.add(amount));
-        
-        transferLogMapper.insertLog(transferLog);
-    }
     
     @Transactional(rollbackFor = Throwable.class)
     public boolean tryTransfer(TransferType transferType, Long from, Long to,
