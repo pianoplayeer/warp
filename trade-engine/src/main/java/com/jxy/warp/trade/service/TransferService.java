@@ -2,12 +2,10 @@ package com.jxy.warp.trade.service;
 
 import java.math.BigDecimal;
 
-import com.jxy.warp.common.config.NacosPropertyConfig;
 import com.jxy.warp.trade.consts.AssetStatus;
 import com.jxy.warp.trade.consts.TransferStatus;
 import com.jxy.warp.trade.entity.TransferLog;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,14 +53,14 @@ public class TransferService {
             return false;
         }
         
-        transfer(from, kind, fromBalance.subtract(amount), transferType.getFrom());
-        transfer(to, kind, toBalance.add(amount), transferType.getTo());
+        doTransfer(from, kind, fromBalance.subtract(amount), transferType.getFrom());
+        doTransfer(to, kind, toBalance.add(amount), transferType.getTo());
         
         transferLogMapper.insertLog(transferLog);
         return true;
     }
     
-    private void transfer(Long userId, String kind, BigDecimal amount, String assetStatus) {
+    private void doTransfer(Long userId, String kind, BigDecimal amount, String assetStatus) {
         if (assetStatus.equals(AssetStatus.FROZEN)) {
             assetMapper.updateAssetFrozenByAmount(userId, kind, amount);
         } else {

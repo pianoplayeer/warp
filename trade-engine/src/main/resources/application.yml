@@ -9,17 +9,25 @@ logging:
   config: classpath:log4j2.xml
 
 spring:
+  redis:
+    host: localhos
+    port: 6379
+    database: 0
+
   config:
     import: nacos:warp-dev.yaml
+
   datasource:
     url: jdbc:mysql://localhost:3305/exchange
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   application:
     name: warp  # 服务名
   profiles:
     active: dev  # 环境隔离
+
   cloud:
     nacos:
       discovery:

@@ -33,4 +33,4 @@ target/
 
 build/docker/
 
-!**/logs/
+**/logs/
