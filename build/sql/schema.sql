@@ -114,7 +114,7 @@ CREATE TABLE orders (
   sequenceId BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
   status VARCHAR(32) NOT NULL,
   unfilledQuantity DECIMAL(36,18) NOT NULL,
-  updatedAt BIGINT NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   userId BIGINT NOT NULL,
   PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci AUTO_INCREMENT = 1000;
@@ -194,3 +194,5 @@ CREATE TABLE users (
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci AUTO_INCREMENT = 1000;
 
 INSERT INTO assets(userId, kind, available, frozen) VALUES (1, 'USD', 0, 0), (1, 'BTC', 0, 0);
+INSERT INTO assets(userId, kind, available, frozen) VALUES (3, 'USD', 0, 0), (3, 'BTC', 0.5, 0);
+INSERT INTO assets(userId, kind, available, frozen) VALUES (4, 'USD', 0, 0), (4, 'BTC', 0, 0);

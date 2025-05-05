@@ -27,7 +27,7 @@ public interface OrderMapper {
 	Order getOrderById(String orderId);
 	
 	@Insert("INSERT INTO orders(id, direction, price, quantity, sequenceId, status, unfilledQuantity, userId) " +
-					"VALUE (id, direction, price, quantity, sequenceId, status, unfilledQuantity, userId)")
+					"VALUES (#{id}, #{direction}, #{price}, #{quantity}, #{sequenceId}, #{status}, #{unfilledQuantity}, #{userId})")
 	void insertOrder(Order order);
 	
 }

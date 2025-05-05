@@ -33,7 +33,7 @@ public class TransferService {
         transferLog.setToUserId(to);
         transferLog.setAssetKind(kind);
         transferLog.setAmount(amount);
-        transferLog.setType(TransferType.AVAILABLE_TO_AVAILABLE.name());
+        transferLog.setType(transferType.name());
         transferLog.setStatus(TransferStatus.SUCCESS);
         
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
@@ -49,7 +49,7 @@ public class TransferService {
         BigDecimal fromBalance = getAssetAmount(from, transferType.getFrom(), kind);
         BigDecimal toBalance = getAssetAmount(to, transferType.getTo(), kind);
         
-        if (checkBalance && fromBalance.compareTo(toBalance) < 0) {
+        if (checkBalance && fromBalance.compareTo(amount) < 0) {
             return false;
         }
         
