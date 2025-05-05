@@ -19,6 +19,7 @@
     <modules>
 		<module>common</module>
 		<module>trade-engine</module>
+		<module>match-engine</module>
 	</modules>
 
 	<properties>
@@ -29,6 +30,9 @@
 		<mysql.connector.version>8.0.28</mysql.connector.version>
 		<lombok.version>1.18.36</lombok.version>
 		<alibaba-cloud.version>2023.0.1.0</alibaba-cloud.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>

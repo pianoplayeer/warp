@@ -26,6 +26,11 @@ public interface OrderMapper {
 	@Select("SELECT * FROM orders WHERE id = #{orderId}")
 	Order getOrderById(String orderId);
 	
+	@Select("SELECT * FROM orders WHERE direction = #{direction} " +
+					"AND status IN ('partial completed', 'pending') " +
+					"ORDER BY price DESC, sequenceId ASC FOR UPDATE")
+	List<Order> getActiveOrdersByDirectionForUpdate(String direction);
+	
 	@Insert("INSERT INTO orders(id, direction, price, quantity, sequenceId, status, unfilledQuantity, userId) " +
 					"VALUES (#{id}, #{direction}, #{price}, #{quantity}, #{sequenceId}, #{status}, #{unfilledQuantity}, #{userId})")
 	void insertOrder(Order order);
