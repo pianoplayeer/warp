@@ -27,9 +27,11 @@
 		<java.version>21</java.version>
 		<springcloud.version>2023.0.1</springcloud.version>
 		<mybatis.spring.version>3.0.3</mybatis.spring.version>
+		<rocketmq.version>2.2.3</rocketmq.version>
 		<mysql.connector.version>8.0.28</mysql.connector.version>
 		<lombok.version>1.18.36</lombok.version>
 		<alibaba-cloud.version>2023.0.1.0</alibaba-cloud.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,6 +65,18 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.connector.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-spring-boot-starter</artifactId>
+				<version>${rocketmq.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

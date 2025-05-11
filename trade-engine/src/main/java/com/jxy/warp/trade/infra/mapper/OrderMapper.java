@@ -1,4 +1,4 @@
-package com.jxy.warp.trade.mapper;
+package com.jxy.warp.trade.infra.mapper;
 
 import com.jxy.warp.trade.entity.Order;
 import org.apache.ibatis.annotations.Insert;

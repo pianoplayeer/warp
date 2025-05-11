@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex</Property>
+        <Property name="APP_LOG_ROOT">./logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- 应用日志文件 -->
+        <RollingFile name="appLog"
+                     fileName="${APP_LOG_ROOT}/application.log"
+                     filePattern="${APP_LOG_ROOT}/application-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!-- 每天(24小时)滚动一次 -->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!-- 当文件大小超过100MB时也会滚动 -->
+                <SizeBasedTriggeringPolicy size="100MB"/>
+            </Policies>
+            <!-- 保留30个日志文件 -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 应用日志 -->
+        <Logger name="com.jxy.warp" level="debug" additivity="false">
+            <AppenderRef ref="appLog"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- 第三方库日志级别 -->
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="appLog"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Root Logger -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="appLog"/>
+        </Root>
+    </Loggers>
+</Configuration>

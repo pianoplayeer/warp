@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jxy.warp.trade.enums.TransferType;
-import com.jxy.warp.trade.mapper.AssetMapper;
-import com.jxy.warp.trade.mapper.TransferLogMapper;
+import com.jxy.warp.trade.infra.mapper.AssetMapper;
+import com.jxy.warp.trade.infra.mapper.TransferLogMapper;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: match-engine
+
+  datasource:
+    url: jdbc:mysql://localhost:3305/exchange
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
+
+
+
+

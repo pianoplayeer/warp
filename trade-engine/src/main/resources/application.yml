@@ -8,6 +8,16 @@ server:
 logging:
   config: classpath:log4j2.xml
 
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: order-producer-group
+    send-message-timeout: 3000
+    # 启用事务消息
+    transaction:
+      check-times: 3           # 事务回查次数
+      check-interval: 10000    # 回查间隔(ms)
+
 spring:
   redis:
     host: localhos

@@ -28,4 +28,8 @@ public class OrderUtil {
 		return redisTemplate.opsForValue().increment(SEQ_ID_KEY);
 	}
 	
+	public Long getCurrentSequence() {
+		return Long.parseLong(redisTemplate.opsForValue().get(SEQ_ID_KEY));
+	}
+	
 }
