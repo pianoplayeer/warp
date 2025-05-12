@@ -56,6 +56,13 @@ public class OrderTransactionListener implements RocketMQLocalTransactionListene
 	
 	@Override
 	public RocketMQLocalTransactionState checkLocalTransaction(Message message) {
-		return null;
+		String orderId = (String) message.getHeaders().get("orderId");
+		Order order = orderMapper.getOrderById(orderId);
+		
+		if (order != null) {
+			return RocketMQLocalTransactionState.COMMIT;
+		} else {
+			return RocketMQLocalTransactionState.ROLLBACK;
+		}
 	}
 }
