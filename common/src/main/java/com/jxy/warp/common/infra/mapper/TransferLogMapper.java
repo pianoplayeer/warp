@@ -1,12 +1,9 @@
-package com.jxy.warp.trade.infra.mapper;
+package com.jxy.warp.common.infra.mapper;
 
-import java.math.BigDecimal;
-
-import com.jxy.warp.trade.entity.TransferLog;
+import com.jxy.warp.common.entity.TransferLog;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
-import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface TransferLogMapper {

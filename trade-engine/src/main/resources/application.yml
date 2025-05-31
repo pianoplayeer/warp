@@ -20,7 +20,7 @@ rocketmq:
 
 spring:
   redis:
-    host: localhos
+    host: localhost
     port: 6379
     database: 0
 

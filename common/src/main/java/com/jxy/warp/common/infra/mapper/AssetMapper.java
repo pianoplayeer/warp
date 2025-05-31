@@ -1,4 +1,4 @@
-package com.jxy.warp.trade.infra.mapper;
+package com.jxy.warp.common.infra.mapper;
 
 import java.math.BigDecimal;
 

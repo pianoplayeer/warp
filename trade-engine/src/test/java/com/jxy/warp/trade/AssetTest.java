@@ -1,8 +1,8 @@
 package com.jxy.warp.trade;
 
-import com.jxy.warp.trade.consts.AssetKind;
+import com.jxy.warp.common.consts.AssetKind;
 import com.jxy.warp.trade.service.AssetService;
-import com.jxy.warp.trade.enums.TransferType;
+import com.jxy.warp.common.enums.TransferType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

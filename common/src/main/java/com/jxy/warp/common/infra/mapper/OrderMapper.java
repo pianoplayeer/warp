@@ -1,9 +1,10 @@
-package com.jxy.warp.trade.infra.mapper;
+package com.jxy.warp.common.infra.mapper;
 
-import com.jxy.warp.trade.entity.Order;
+import com.jxy.warp.common.entity.Order;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -26,13 +27,11 @@ public interface OrderMapper {
 	@Select("SELECT * FROM orders WHERE id = #{orderId}")
 	Order getOrderById(String orderId);
 	
-	@Select("SELECT * FROM orders WHERE direction = #{direction} " +
-					"AND status IN ('partial completed', 'pending') " +
-					"ORDER BY price DESC, sequenceId ASC FOR UPDATE")
-	List<Order> getActiveOrdersByDirectionForUpdate(String direction);
-	
 	@Insert("INSERT INTO orders(id, direction, price, quantity, sequenceId, status, unfilledQuantity, userId) " +
 					"VALUES (#{id}, #{direction}, #{price}, #{quantity}, #{sequenceId}, #{status}, #{unfilledQuantity}, #{userId})")
 	void insertOrder(Order order);
+	
+	@Update("UPDATE orders SET status = #{status}, unfilledQuantity = #{unfilledQuantity}, updatedAt = #{updatedAt} WHERE id = #{id}")
+	void updateOrder(Order order);
 	
 }

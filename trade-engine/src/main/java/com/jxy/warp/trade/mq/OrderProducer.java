@@ -1,13 +1,16 @@
-package com.jxy.warp.trade.infra.mq;
+package com.jxy.warp.trade.mq;
 
 import com.alibaba.fastjson.JSON;
 import com.jxy.warp.common.config.NacosPropertyConfig;
-import com.jxy.warp.trade.entity.Order;
+import com.jxy.warp.common.consts.MQConst;
+import com.jxy.warp.common.entity.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,21 +18,20 @@ import org.springframework.stereotype.Service;
  * @package com.jxy.warp.trade.infra.mq
  */
 @Slf4j
-@Service
+@Component
 public class OrderProducer {
-	
-	@Autowired
-	private NacosPropertyConfig nacosPropertyConfig;
 	
 	@Autowired
 	private RocketMQTemplate mqTemplate;
 	
 	public void produceOrder(Order order) {
 		Message<String> message = MessageBuilder.withPayload(JSON.toJSONString(order))
+										  .setHeader(RocketMQHeaders.KEYS, order.getId())
+										  .setHeader(RocketMQHeaders.TAGS, order.getDirection())
 										  .setHeader("orderId", order.getId())
 										  .build();
 		
-		mqTemplate.sendMessageInTransaction(nacosPropertyConfig.getOrderTopic(), message, order);
-		log.info("send order {} to mq", message);
+		var result = mqTemplate.sendMessageInTransaction(MQConst.ORDER_TOPIC, message, order);
+		log.info("send order {} to mq, topic: {}", message, MQConst.ORDER_TOPIC);
 	}
 }

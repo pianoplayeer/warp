@@ -78,18 +78,15 @@ CREATE TABLE hour_bars (
 
 CREATE TABLE match_details (
   id BIGINT NOT NULL AUTO_INCREMENT,
-  counterOrderId BIGINT NOT NULL,
-  counterUserId BIGINT NOT NULL,
+  takerOrderId VARCHAR(100) NOT NULL,
+  takerUserId BIGINT NOT NULL,
+  makerOrderId VARCHAR(100) NOT NULL,
+  makerUserId BIGINT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   direction VARCHAR(32) NOT NULL,
-  orderId BIGINT NOT NULL,
   price DECIMAL(36,18) NOT NULL,
   quantity DECIMAL(36,18) NOT NULL,
-  sequenceId BIGINT NOT NULL,
-  type VARCHAR(32) NOT NULL,
-  userId BIGINT NOT NULL,
-  CONSTRAINT UNI_OID_COID UNIQUE (orderId, counterOrderId),
-  INDEX IDX_OID_CT (orderId,createdAt),
+  status VARCHAR(20) NOT NULL,
   PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci AUTO_INCREMENT = 1000;
 

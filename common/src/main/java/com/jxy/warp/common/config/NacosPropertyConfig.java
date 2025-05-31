@@ -18,15 +18,8 @@ public class NacosPropertyConfig {
 	@Value("${warp.trade.user.systemId}")
 	private String systemId;
 	
-	@Value("${warp.trade.topic.order}")
-	private String orderTopic;
-	
 	public Long getSystemId() {
 		return Long.parseLong(systemId);
-	}
-	
-	public String getOrderTopic() {
-		return orderTopic;
 	}
 	
 }

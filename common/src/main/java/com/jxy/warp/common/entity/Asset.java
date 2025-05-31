@@ -1,4 +1,4 @@
-package com.jxy.warp.trade.entity;
+package com.jxy.warp.common.entity;
 
 import java.math.BigDecimal;
 

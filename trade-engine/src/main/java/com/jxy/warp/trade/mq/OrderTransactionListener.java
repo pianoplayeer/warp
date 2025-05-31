@@ -1,11 +1,11 @@
-package com.jxy.warp.trade.infra.mq;
+package com.jxy.warp.trade.mq;
 
 
-import com.jxy.warp.trade.consts.AssetKind;
-import com.jxy.warp.trade.consts.OrderDirection;
-import com.jxy.warp.trade.entity.Order;
+import com.jxy.warp.common.consts.AssetKind;
+import com.jxy.warp.common.consts.OrderDirection;
+import com.jxy.warp.common.entity.Order;
 import com.jxy.warp.trade.exception.AssetFreezeException;
-import com.jxy.warp.trade.infra.mapper.OrderMapper;
+import com.jxy.warp.common.infra.mapper.OrderMapper;
 import com.jxy.warp.trade.service.AssetService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
@@ -60,8 +60,10 @@ public class OrderTransactionListener implements RocketMQLocalTransactionListene
 		Order order = orderMapper.getOrderById(orderId);
 		
 		if (order != null) {
+			log.info("mq check back success");
 			return RocketMQLocalTransactionState.COMMIT;
 		} else {
+			log.error("mq check back fail");
 			return RocketMQLocalTransactionState.ROLLBACK;
 		}
 	}

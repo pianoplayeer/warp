@@ -1,6 +1,6 @@
-package com.jxy.warp.trade.enums;
+package com.jxy.warp.common.enums;
 
-import com.jxy.warp.trade.consts.AssetStatus;
+import com.jxy.warp.common.consts.AssetStatus;
 import lombok.Getter;
 
 @Getter

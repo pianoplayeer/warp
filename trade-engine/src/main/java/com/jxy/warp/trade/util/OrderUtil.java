@@ -20,6 +20,7 @@ public class OrderUtil {
 	@Autowired
 	private StringRedisTemplate redisTemplate;
 	
+	// TODO:采用定序系统
 	public String generateOrderIdPrefix() {
 		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-"));
 	}

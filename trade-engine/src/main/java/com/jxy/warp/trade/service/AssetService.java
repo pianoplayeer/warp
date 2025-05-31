@@ -1,7 +1,7 @@
 package com.jxy.warp.trade.service;
 
 import com.jxy.warp.common.config.NacosPropertyConfig;
-import com.jxy.warp.trade.enums.TransferType;
+import com.jxy.warp.common.enums.TransferType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication(scanBasePackages = {"com.jxy.warp"})
-@MapperScan("com.jxy.warp.trade.infra.mapper")
+@MapperScan("com.jxy.warp.common.infra.mapper")
 @EnableDiscoveryClient
 @Import(RocketMQAutoConfiguration.class)
 public class TradeEngineApplication {

@@ -12,24 +12,14 @@
     <version>${warp.version}</version>
     <name>match-engine</name>
     <description>match-engine</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-    <properties>
-        <java.version>21</java.version>
-    </properties>
-    <dependencies>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jxy</groupId>
+            <artifactId>common</artifactId>
+            <version>${warp.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -39,6 +29,10 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

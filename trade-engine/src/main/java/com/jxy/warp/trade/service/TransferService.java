@@ -2,16 +2,16 @@ package com.jxy.warp.trade.service;
 
 import java.math.BigDecimal;
 
-import com.jxy.warp.trade.consts.AssetStatus;
-import com.jxy.warp.trade.consts.TransferStatus;
-import com.jxy.warp.trade.entity.TransferLog;
+import com.jxy.warp.common.consts.AssetStatus;
+import com.jxy.warp.common.consts.TransferStatus;
+import com.jxy.warp.common.entity.TransferLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jxy.warp.trade.enums.TransferType;
-import com.jxy.warp.trade.infra.mapper.AssetMapper;
-import com.jxy.warp.trade.infra.mapper.TransferLogMapper;
+import com.jxy.warp.common.enums.TransferType;
+import com.jxy.warp.common.infra.mapper.AssetMapper;
+import com.jxy.warp.common.infra.mapper.TransferLogMapper;
 import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
